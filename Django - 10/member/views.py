@@ -95,11 +95,11 @@ class UserProfileView(DetailView):
                 to_user=self.object,
                 from_user=self.request.user,
             )
-
+        return data
 
 class UserFollowingView(LoginRequiredMixin,View):
     def post(self, *args, **kwargs):
-        pk = kwargs.get['pk', 0]
+        pk = kwargs.get('pk', 0)
         to_user = get_object_or_404(User, pk=pk)
 
         if to_user == self.request.user: # 자기자신은 팔로우 불가
